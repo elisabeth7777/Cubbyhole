@@ -1,0 +1,30 @@
+plan:
+    pattern:  /
+    defaults: { _controller: "CubbyHoleMainBundle:Plan:index" }
+
+plan_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CubbyHoleMainBundle:Plan:show" }
+
+plan_new:
+    pattern:  /new
+    defaults: { _controller: "CubbyHoleMainBundle:Plan:new" }
+
+plan_create:
+    pattern:  /create
+    defaults: { _controller: "CubbyHoleMainBundle:Plan:create" }
+    requirements: { _method: post }
+
+plan_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CubbyHoleMainBundle:Plan:edit" }
+
+plan_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CubbyHoleMainBundle:Plan:update" }
+    requirements: { _method: post|put }
+
+plan_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CubbyHoleMainBundle:Plan:delete" }
+    requirements: { _method: post|delete }

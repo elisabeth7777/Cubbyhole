@@ -1,0 +1,3 @@
+cubby_hole_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CubbyHoleUserBundle:Default:index }

@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: FTP.christ-mavie.com
+    database_port: null
+    database_name: christma_cubbyhole
+    database_user: christma_cubbyh
+    database_password: mVsqmTT9n5vx
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt

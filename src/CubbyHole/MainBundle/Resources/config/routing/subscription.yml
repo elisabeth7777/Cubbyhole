@@ -1,0 +1,11 @@
+subscription:
+  pattern: /
+  defaults: { _controller: "CubbyHoleMainBundle:Subscription:index" }
+  
+subscription_new:
+    pattern:  /{id}/new
+    defaults: { _controller: "CubbyHoleMainBundle:Subscription:new" }  
+
+subscription_choose:
+    pattern:  /your-plan
+    defaults: { _controller: "CubbyHoleMainBundle:Subscription:choose" }

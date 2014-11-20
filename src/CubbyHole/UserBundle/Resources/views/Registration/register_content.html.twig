@@ -1,0 +1,32 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form with 'CubbyHoleUserBundle:Form:fields.html.twig' %}
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                {{ form_errors(form) }}
+                    <h2>Signup</h2>
+
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        {{ form_widget(form.username) }}
+                    </div>
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        {{ form_widget(form.email) }}
+                    </div>    
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        {{ form_widget(form.plainPassword.first) }}
+                    </div>
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        {{ form_widget(form.plainPassword.second) }}
+                    </div>
+
+                 
+ 
+                {{ form_rest(form) }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn theme-btn pull-right">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>                        
+                        </div>
+                    </div>
+</form>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+    
+<head>
+    <meta charset="utf-8" />
+    <title>CubbyHole | Homepage</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+ 
+   <!-- BEGIN GLOBAL MANDATORY STYLES -->          
+   <link href="{{ asset('FrontEnd/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+   <link href="{{ asset('FrontEnd/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+   <!-- END GLOBAL MANDATORY STYLES -->
+   
+   <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
+   <link href="{{ asset('FrontEnd/plugins/fancybox/source/jquery.fancybox.css') }}" rel="stylesheet" />              
+   <link href="{{ asset('FrontEnd/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/> 
+   <!-- END PAGE LEVEL PLUGIN STYLES -->
+ 
+   <!-- BEGIN THEME STYLES --> 
+   <link href="{{ asset('FrontEnd/css/style-metronic.css') }}" rel="stylesheet" type="text/css"/>
+   <link href="{{ asset('FrontEnd/css/style.css') }}" rel="stylesheet" type="text/css"/>
+   <link href="{{ asset('FrontEnd/css/pages/page404.css') }}" rel="stylesheet" type="text/css"/>
+   <link href="{{ asset('FrontEnd/css/style-responsive.css') }}" rel="stylesheet" type="text/css"/>
+   <link href="{{ asset('FrontEnd/css/themes/orange.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
+   <!-- END THEME STYLES -->
+   {% block css %}
+   {% endblock %}
+   <link rel="shortcut icon" href="{{ asset('favicon.jpg') }}" />
+</head>  
+
+{% block header %}
+<div class="header navbar navbar-default navbar-static-top">
+        <!-- BEGIN TOP BAR -->
+        <div class="front-topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 col-sm-9">
+                        <ul class="list-unstyle inline">
+                            <li><i class="fa fa-phone topbar-info-icon top-2"></i>Call us: <span>(1) 456 6717</span></li>
+                            <li class="sep"><span>|</span></li>
+                            <li><i class="fa fa-envelope-o topbar-info-icon top-2"></i>Email: <span>info@keenthemes.com</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-3 login-reg-links">
+                        <ul class="list-unstyled inline">
+                            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                            <li class="sep"><span>|</span></li>
+                            <li><a href="{{ path('fos_user_registration_register') }}">Signup</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        <!-- END TOP BAR -->    
+	<div class="container">
+		<div class="navbar-header">
+                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                    <button class="navbar-toggle btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                    </button>
+                    <!-- END RESPONSIVE MENU TOGGLER -->
+                    <!-- BEGIN LOGO (you can use logo image instead of text)-->
+                    <a class="navbar-brand logo-v1" href="{{ path('cubby_hole_main_homepage') }}">
+                            <img src="{{ asset('FrontEnd/img/logo_orange.png') }}" id="logoimg" alt="">
+                    </a>
+                    <!-- END LOGO -->
+		</div>
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+                            <li><a href="{{ path('cubby_hole_main_homepage') }}">Home</a></li>
+                            <li><a href="{{ path('cubby_hole_main_aboutUs') }}">A propos</a></li>
+                            <li><a href="{{ path('cubby_hole_main_plan') }}">Nos Plans</a></li>
+                            <li><a href="{{ path('cubby_hole_main_homepage') }}">Admin</a></li>
+			</ul>                           
+		</div>
+		<!-- BEGIN TOP NAVIGATION MENU -->
+	</div>
+</div> 
+
+<!-- END TOP BAR -->
+{% endblock %}
+
+{% block slider %}
+    <!-- BEGIN REVOLUTION SLIDER -->
+    <!--<div class="fullwidthbanner-container slider-main margin-bottom-10">
+        <div class="fullwidthabnner">
+            <div class="tp-bannertimer tp-bottom"></div>
+        </div>
+    </div>-->
+    <!-- END REVOLUTION SLIDER -->
+{% endblock %}
+    
+{% block content %}
+  <!-- BEGIN CONTAINER -->   
+    <div class="container">
+        <!-- BEGIN BREADCRUMBS -->   
+        <div class="row breadcrumbs margin-bottom-40">
+                <div class="container">
+                        <div class="col-md-4 col-sm-4">
+                                
+                        </div>
+                </div>
+        </div>
+        <!-- END BREADCRUMBS -->
+        <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <h1>{% block title %}{% endblock %}</h1>
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="container margin-bottom-40">
+                      <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 login-signup-page">
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div></div></div>
+    </div>
+    <!-- END CONTAINER -->    
+{% endblock %}
+    
+{% block footer %}
+<!-- BEGIN FOOTER -->
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 space-mobile">
+                    <!-- BEGIN ABOUT -->                    
+                    <h2>About</h2>
+                    <p class="margin-bottom-30">Vivamus imperdiet felis consectetur onec eget orci adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper.</p>
+                    <div class="clearfix"></div>                    
+                    <!-- END ABOUT -->          
+                           
+                </div>
+                <div class="col-md-4 col-sm-4 space-mobile">
+                    <!-- BEGIN CONTACTS -->                                    
+                    <h2>Contact Us</h2>
+                    <address class="margin-bottom-40">
+                        CubbyHole, Inc. <br />
+                        795 Park Ave, Suite 120 <br />
+                        San Francisco, CA 94107 <br />
+                        P: (234) 145-1810 <br />
+                        Email: <a href="mailto:info@keenthemes.com">info@cubbyhole.com</a>                        
+                    </address>
+                    <!-- END CONTACTS -->                                    
+                                
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <!-- BEGIN TWITTER BLOCK -->                                                    
+                    <h2>Latest Tweets</h2>
+                    <dl class="dl-horizontal f-twitter">
+                        <dt><i class="fa fa-twitter"></i></dt>
+                        <dd>
+                            <a href="#">@cubbyhole</a>
+                            Imperdiet condimentum diam dolor lorem sit consectetur adipiscing
+                            <span>3 min ago</span>
+                        </dd>
+                    </dl>                    
+                    <dl class="dl-horizontal f-twitter">
+                        <dt><i class="fa fa-twitter"></i></dt>
+                        <dd>
+                            <a href="#">@cubbyhole</a>
+                            Sequat ipsum dolor onec eget orci fermentum condimentum lorem sit consectetur adipiscing
+                            <span>8 min ago</span>
+                        </dd>
+                    </dl>                                      
+                    <!-- END TWITTER BLOCK -->                                                                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+
+    <!-- BEGIN COPYRIGHT -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <p>
+                        <span class="margin-right-10">2014 © CubbyHole Team. ALL Rights Reserved.</span> 
+                        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <ul class="social-footer">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dropbox"></i></a></li>
+                    </ul>                
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END COPYRIGHT -->
+<!-- END FOOTER -->
+   
+{% endblock %}
+    
+{% block javascripts %}
+   <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script> 
+    <script src="{{ asset('FrontEnd/plugins/jquery-1.10.2.min.js') }}" type="text/javascript"></script> 
+    <script src="{{ asset('FrontEnd/plugins/jquery-migrate-1.2.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('FrontEnd/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('FrontEnd/plugins/back-to-top.js') }}"></script>    
+    <script src="{{ asset('FrontEnd/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript" ></script>
+    
+    <script type="text/javascript" src="{{ asset('FrontEnd/plugins/fancybox/source/jquery.fancybox.pack.js') }}"></script>    
+    <script type="text/javascript" src="{{ asset('FrontEnd/plugins/hover-dropdown.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('FrontEnd/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('FrontEnd/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script> 
+    <!--[if lt IE 9]>
+    <script src="{{ asset('FrontEnd/plugins/respond.min.js') }}"></script>  
+    <![endif]-->   
+    <!-- END CORE PLUGINS -->   
+ 
+
+    <script type="text/javascript" src="{{ asset('FrontEnd/plugins/bxslider/jquery.bxslider.js') }}"></script>
+    <script src="{{ asset('FrontEnd/scripts/app.js') }}"></script>
+    <script src="{{ asset('FrontEnd/scripts/index.js') }}"></script>    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            App.init();    
+            App.initBxSlider();
+            Index.initRevolutionSlider();   
+            App.initUniform();  
+        });
+    </script>
+	
+    <!-- END JAVASCRIPTS -->    
+{% endblock %}    

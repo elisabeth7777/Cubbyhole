@@ -1,0 +1,159 @@
+<?php
+
+namespace CubbyHole\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * File
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="CubbyHole\MainBundle\Entity\FileRepository")
+ */
+class File
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="CubbyHole\UserBundle\Entity\User")
+     */
+    private $user;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="size", type="integer")
+     */
+    private $size;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateUpload", type="datetime")
+     */
+    private $dateUpload;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shareLink", type="string", length=255)
+     */
+    private $shareLink;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set size
+     *
+     * @param integer $size
+     * @return File
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set dateUpload
+     *
+     * @param \DateTime $dateUpload
+     * @return File
+     */
+    public function setDateUpload($dateUpload)
+    {
+        $this->dateUpload = $dateUpload;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUpload
+     *
+     * @return \DateTime 
+     */
+    public function getDateUpload()
+    {
+        return $this->dateUpload;
+    }
+
+    /**
+     * Set shareLink
+     *
+     * @param string $shareLink
+     * @return File
+     */
+    public function setShareLink($shareLink)
+    {
+        $this->shareLink = $shareLink;
+
+        return $this;
+    }
+
+    /**
+     * Get shareLink
+     *
+     * @return string 
+     */
+    public function getShareLink()
+    {
+        return $this->shareLink;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return File
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+}

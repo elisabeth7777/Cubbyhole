@@ -1,0 +1,36 @@
+{% extends "CubbyHoleMainBundle::LayoutFrontEnd.html.twig" %}
+{% block css %}
+<link href="{{ asset('FrontEnd/css/pages/prices.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block title %}Nos Plans{% endblock %}
+{% block body %}
+<!-- BEGIN CONTAINER -->   
+<div class="container min-hight">
+    <!-- BEGIN PRICING OPTION1 -->
+    <div class="row margin-bottom-40">
+        {% for entity in entities %}
+                <div class="col-md-3">
+                        <div class="pricing">
+                                <div class="pricing-head">
+                                        <h3>{{ entity.name }} <span>{{ entity.soustitre }}</span></h3>
+                                        <h4><i>$</i>{{ entity.price }} <span>Per Month</span></h4>
+                                </div>
+                                <ul class="pricing-content list-unstyled">
+                                        <li><i class="icon-tags"></i> {{ entity.spaceStorage }} Go Storage</li>
+                                        <li><i class="icon-asterisk"></i> {{ entity.maxBandwidth }}Go Bandwidth</li>
+                                        <li><i class="icon-heart"></i> {{ entity.quotaSharedLink }}Go Shared Link</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                        <p>{{ entity.description }}</p>
+                                        <a href="#{#{ path('subscription_new', { 'id': entity.id }) }#}" class="btn theme-btn">Choose</a>  
+                                </div>
+                        </div>
+                </div>
+        {% endfor %}
+        </div>
+    </div>
+    <!-- END PRICING OPTION1 -->
+</div>
+<!-- END CONTAINER --> 
+{% endblock %}
+

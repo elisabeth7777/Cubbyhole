@@ -1,0 +1,20 @@
+cubby_hole_main_homepage:
+    pattern:  /
+    defaults: { _controller: CubbyHoleMainBundle:Default:index }
+
+cubby_hole_main_aboutUs:
+    pattern:  /apropos
+    defaults: { _controller: CubbyHoleMainBundle:Default:about }
+    
+cubby_hole_main_plan:
+    pattern:  /nos-plans
+    defaults: { _controller: CubbyHoleMainBundle:Default:plan }
+    
+CubbyHoleMainBundle_plan:
+        resource: "@CubbyHoleMainBundle/Resources/config/routing/plan.yml"
+        prefix:   /plan
+        
+CubbyHoleMainBundle_subscription:
+        resource: "@CubbyHoleMainBundle/Resources/config/routing/subscription.yml"
+        prefix:   /subscribe      
+        
